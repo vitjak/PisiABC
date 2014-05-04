@@ -1,0 +1,26 @@
+D:\PisiABC\test\platforms\android\ant-build\PisiABC.ap_ \
+ : D:\PisiABC\test\platforms\android\res\drawable\icon.png \
+D:\PisiABC\test\platforms\android\res\drawable-hdpi\icon.png \
+D:\PisiABC\test\platforms\android\res\drawable-ldpi\icon.png \
+D:\PisiABC\test\platforms\android\res\drawable-mdpi\icon.png \
+D:\PisiABC\test\platforms\android\res\drawable-xhdpi\icon.png \
+D:\PisiABC\test\platforms\android\res\values\strings.xml \
+D:\PisiABC\test\platforms\android\res\xml\config.xml \
+D:\PisiABC\test\platforms\android\ant-build\res\drawable\icon.png \
+D:\PisiABC\test\platforms\android\ant-build\res\drawable-hdpi\icon.png \
+D:\PisiABC\test\platforms\android\ant-build\res\drawable-ldpi\icon.png \
+D:\PisiABC\test\platforms\android\ant-build\res\drawable-mdpi\icon.png \
+D:\PisiABC\test\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
+D:\PisiABC\test\platforms\android\assets\www \
+D:\PisiABC\test\platforms\android\assets\_where-is-www.txt \
+D:\PisiABC\test\platforms\android\assets\www\cordova.js \
+D:\PisiABC\test\platforms\android\assets\www\cordova_plugins.js \
+D:\PisiABC\test\platforms\android\assets\www\css \
+D:\PisiABC\test\platforms\android\assets\www\img \
+D:\PisiABC\test\platforms\android\assets\www\index.html \
+D:\PisiABC\test\platforms\android\assets\www\js \
+D:\PisiABC\test\platforms\android\assets\www\css\index.css \
+D:\PisiABC\test\platforms\android\assets\www\img\letterA.png \
+D:\PisiABC\test\platforms\android\assets\www\js\colouring.js \
+D:\PisiABC\test\platforms\android\assets\www\js\index.js \
+D:\PisiABC\test\platforms\android\ant-build\AndroidManifest.xml \
