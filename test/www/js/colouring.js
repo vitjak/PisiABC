@@ -51,6 +51,9 @@ var A_UP = 1;
 // action up (mouse release)
 
 function startDraw(e) {
+  if (allow_draw === false) {
+    return false;
+  }
   presses++;
   limit_point = -1;
   prev_point = -1;
@@ -65,7 +68,6 @@ function startDraw(e) {
   else {
     // Mouse event
     cb_lastPoints[0] = getCoords(e);
-    //letter_a.action(cb_lastPoints[0], presses, A_DOWN);
     letter_curr.action(cb_lastPoints[0], presses, A_DOWN);
     cb_canvas.onmousemove = drawMouse;
   }
@@ -75,14 +77,19 @@ function startDraw(e) {
 
 // Called whenever cursor position changes after drawing has started
 function stopDraw(e) {
+  if (allow_draw === false) {
+    return false;
+  }
   e.preventDefault();
   cb_canvas.onmousemove = null;
   var coords = cb_lastPoints[cb_lastPoints.length - 1];
-  //letter_a.action(coords, presses, A_UP);
   letter_curr.action(coords, presses, A_UP);
 }
 
 function drawMouse(e) {
+  if (allow_draw === false) {
+    return false;
+  }
   if (e.touches) {
     // Touch Enabled
     for (var i = 1; i <= e.touches.length; i++) {
@@ -127,23 +134,23 @@ function getCoords(e) {
 
   //console.log(coords);
 
-  var pp = (coords.x << 16) + coords.y;
-  //if (shape_unique[pp] === undefined) {
-  //  shape_unique[pp] = 1;
-  //  shape.push(pp);
-  //}
-
+  if (allow_draw === false) {
+    return coords;
+  }
 
   if (presses >= a_shape.length) {
     failure = true;
     console.log('Too many clicks.');
     return coords;
   }
+
+  var pp = (coords.x << 16) + coords.y;
   var dist = find_closest(pp, a_shape[presses]);
-  if (dist > 120) {
+  if (dist > 60) {
     failure = true;
     console.log("too far");
     //alert("too far");
+    repeat_letter();
   }
 
   prev_point = pp;
@@ -208,14 +215,16 @@ Letter.prototype.action = function (coords, stage, state) {
     //console.log('release in');
 
     if ((idx == this.mark.length - 1) && !failure) {
-      //console.log('Bravo!');
-      alert('BRAVO!');
+      console.log('Bravo!');
+      //alert('BRAVO!');
+      next_letter(true);
     }
     return true;
   }
 
   //console.log('release out');
   //alert('release out');
+  repeat_letter();
   failure = true;
   return false;
 };
@@ -287,6 +296,7 @@ function find_closest(p, pset) {
     failure = true;
     console.log('Reverse pattern detected.');
     //alert('reverse');
+    repeat_letter();
   }
   //console.log('reward: ' + reward + ' penalty: ' + penalty)
 
@@ -317,13 +327,6 @@ function radix_sort(old) {
   return old;
 }
 
-
-function pprint(s) {
-  for (var i=0; i<s.length; i++) {
-    console.log('shape[' + i + '] = ' + shape[i]);
-  }
-}
-
 var r_shape;
 
 function add_shape(shape) {
@@ -337,6 +340,7 @@ function add_shape(shape) {
 
   a_r_shape.push(r_shape);
 
+  shape = shape.slice(0);
   shape = radix_sort(shape);
 
   a_shape.push(shape);
@@ -346,8 +350,4 @@ function add_shape(shape) {
 
 var a_shape = new Array();
 var a_r_shape = new Array();
-//a_line_1();
-//a_line_2();
-// init first line of letter A
-//shape = new Array();
 

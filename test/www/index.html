@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
     <title>PisiABC</title>
+    <link rel="stylesheet" type="text/css" href="./css/css-fireworks.css">
     <style>
-
       html {
         background: url(./img/background.png) no-repeat center center fixed;
         -webkit-background-size: cover;
@@ -12,7 +13,6 @@
         -o-background-size: cover;
         background-size: cover;
       }
-
 
       #content {
         background: url(./img/letters/A.png) no-repeat center center fixed;
@@ -22,235 +22,256 @@
         background-size: cover;
       }
 
+      body {
+        margin:0px;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        font-family:Arial;
+        /* prevent text selection on ui */
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        /* prevent scrolling in windows phone */
+        -ms-touch-action: none;
+        /* prevent selection highlight */
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
 
-body {
-    margin:0px;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Arial;
-    /* prevent text selection on ui */
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    /* prevent scrolling in windows phone */
-    -ms-touch-action: none;
-    /* prevent selection highlight */
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
+      .header, .footer{
+        position: absolute;
+        /* background-color: #222; */
+        text-align: center;
+      }
+      .header {
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 32px;
+        padding:6px;
+        z-index: 9999;
+      }
+      .footer {
+        bottom: 100px;
+        left: 0px;
+        right: 0px;
+        height: 42px;
+        padding:2px;
+      }
+      .title {
+        width: auto;
+        line-height: 32px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #eee;
+        text-shadow: 0px -1px #000;
+        padding:0 60px;
+      }
+      .navbtn {
+        cursor: pointer;
+        float:right;
+        padding: 6% 4%;
+        font-weight: bold;
+        line-height: 18px;
+        font-size: 250%;
+        color: #eee;
+        text-shadow: 0px -1px #000;
+        border: solid 1px #111;
+        border-radius: 4px;
+        background-color: #404040;
+        box-shadow: 0 0 1px 1px #555,inset 0 1px 0 0 #666;
+      }
+      .navbtn-hover, .navbtn:active {
+        color: #222;
+        text-shadow: 0px 1px #aaa;
+        background-color: #aaa;
+        box-shadow: 0 0 1px 1px #444,inset 0 1px 0 0 #ccc;
+      }
 
-.header, .footer{
-    position: absolute;
-    background-color: #222;
-    text-align: center;
-}
-.header {
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: 32px;
-    padding:6px;
-    z-index: 9999;
-}
-.footer {
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    height: 42px;
-    padding:2px;
-}
-.title {
-    width: auto;
-    line-height: 32px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #eee;
-    text-shadow: 0px -1px #000;
-    padding:0 60px;
-}
-.navbtn {
-    cursor: pointer;
-    float:left;
-    padding: 6px 10px;
-    font-weight: bold;
-    line-height: 18px;
-    font-size: 14px;
-    color: #eee;
-    text-shadow: 0px -1px #000;
-    border: solid 1px #111;
-    border-radius: 4px;
-    background-color: #404040;
-    box-shadow: 0 0 1px 1px #555,inset 0 1px 0 0 #666;
-}
-.navbtn-hover, .navbtn:active {
-    color: #222;
-    text-shadow: 0px 1px #aaa;
-    background-color: #aaa;
-    box-shadow: 0 0 1px 1px #444,inset 0 1px 0 0 #ccc;
-}
+      .navbtn-l {
+        cursor: pointer;
+        float:left;
+        padding: 6% 4%;
+        font-weight: bold;
+        line-height: 18px;
+        font-size: 250%;
+        color: #eee;
+        text-shadow: 0px -1px #000;
+        border: solid 1px #111;
+        border-radius: 4px;
+        background-color: #404040;
+        box-shadow: 0 0 1px 1px #555,inset 0 1px 0 0 #666;
+      }
 
-#content{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    overflow:hidden;
-    /* background-color:#ddd; */
-}
-#canvas{
-    cursor:crosshair ;
-    background-color:#fff;
-}
-.palette-case {
-    width:260px;
-    margin:auto;
-    text-align:center;
-}
-.palette-box {
-    float:left;
-    padding:2px 6px 2px 6px;
-}
-.palette {
-    border:2px solid #777;
-    height:36px;
-    width:36px;
-}
-.red{
-    background-color:#c22;
-}
-.blue{
-    background-color:#22c;
-}
-.green{
-    background-color:#2c2;
-}
-.white{
-    background-color:#fff;
-}
-.black{
-    background-color:#000;
-    border:2px dashed #fff;
-}
+      #content{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        overflow:hidden;
+        /* background-color:#ddd; */
+      }
+      #canvas{
+        cursor:crosshair ;
+        background-color:#fff;
+      }
+      .palette-case {
+        width:260px;
+        margin:auto;
+        text-align:center;
+      }
+      .palette-box {
+        float:left;
+        padding:2px 6px 2px 6px;
+      }
+      .palette {
+        border:2px solid #777;
+        height:36px;
+        width:36px;
+      }
+      .red{
+        background-color:#c22;
+      }
+      .blue{
+        background-color:#22c;
+      }
+      .green{
+        background-color:#2c2;
+      }
+      .white{
+        background-color:#fff;
+      }
+      .black{
+        background-color:#000;
+        border:2px dashed #fff;
+      }
+
+      #aimg {
+        max-height: 400%;
+        overflow: hidden;
+      }
+
+      .finger, .paimg {
+        height: 1px;
+        width: 1px;
+        visibility: hidden;
+      }
+
+      h1 {
+        position: relative;
+        font-size:250%;
+        text-transform:uppercase;
+      }
 
     </style>
   </head>
   <body>
-<!--
-    <div id="image"></div>
-    <canvas id="cbook" style="position: relative;">
-    </canvas>
-    <script type="text/javascript" src="js/colouring.js"></script>
+    <div id="page">
+      <div class="header">
+        <a id="new" class="navbtn" onclick="next_letter(false);">&#10140;</a>
+        <a id="new-l" class="navbtn-l" onclick="repeat_letter();">&#8635;</a>
+        <div class="title"><img id="aimg" src="./img/pics/ananas.png" /></div>
+      </div>
+      <div id="content"><p style="text-align:center">Nalagam platno...</p></div>
+      <div class="footer">
+        <h1><span id="assoc-word"></span><span class="nbsp">&nbsp;</span></h1>
+      </div>
+      <img id="finger" class="finger" src="./img/finger.png" />
+      <img id="paimg" class="paimg" src="./img/pics/ananas.png" />
+    </div>
     <script>
+      var finger = new Image();
+      finger.src = './img/finger.png';
+      var letter_curr;
 
-      var c=document.getElementById("cbook");
-      var ctx=c.getContext("2d");
-      var img=document.getElementById("image");
+      var canvas;
+      var ctx2;
+      var interval = null;
+      var timer = null;
+      var timer2 = null;
+      var content = document.getElementById('content');
+      var allow_draw = false;
+      // prevent canvas drawing until letter is shown first.
 
+      var aimgs = ['ananas', 'balon', 'copat', 'cebela', 'darilo', 'ena', 'fraca', 'globus', 'hrcek', 'igla', 'jagoda', 'konj', 'list', 'macka', 'netopir', 'opica', 'pes', 'riba', 'stol', 'storklja', 'torta', 'ura', 'vaza', 'zmaj', 'zelva'];
+      // associative images
+
+      var awords = ['ananas', 'balon', 'copat', 'čebela', 'darilo', 'ena', 'frača', 'globus', 'hrček', 'igla', 'jagoda', 'konj', 'list', 'mačka', 'netopir', 'opica', 'pes', 'riba', 'stol', 'štorklja', 'torta', 'ura', 'vaza', 'zmaj', 'želva'];
+      // associative words
+
+      function newCanvas() {
+        canvas = '<canvas id="cbook" width="' + window.innerWidth + '" height="'+(window.innerHeight - 90)+'"></canvas>';
+        content.innerHTML = canvas;
+
+        // setup canvas
+        ctx2=document.getElementById("cbook");
+        ctx=document.getElementById("cbook").getContext("2d");
+      }
+
+      newCanvas();
     </script>
-    -->
-<div id="page">
-    <div class="header">
-    <a id="new" class="navbtn" onclick="next_letter();">Naprej</a>
-        <div class="title">PisiABC</div>
-    </div>
-    <div id="content"><p style="text-align:center">Nalagam platno...</p></div>
-      <!--
-    <div class="footer">
-      <div class="palette-case">
-      <div class="palette-box">
-        <div class="palette white"></div>
-      </div>
-      <div class="palette-box">
-        <div class="palette red"></div>
-      </div>
-      <div class="palette-box">
-        <div class="palette blue"></div>
-      </div>
-      <div class="palette-box">
-        <div class="palette green"></div>
-      </div>
 
-      <div class="palette-box">
-        <div class="palette black"></div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-</div>
--->
-</div>
-<script>
-function newCanvas() {
-  var content = document.getElementById('content');
-  var canvas = '<canvas id="cbook" width="' + window.innerWidth + '" height="'+(window.innerHeight - 90)+'"></canvas>';
-  content.innerHTML = canvas;
+    <script type="text/javascript" src="js/colouring.js"></script>
+    <script type="text/javascript" src="js/shape_a.js"></script>
 
-  // setup canvas
-  ctx=document.getElementById("cbook").getContext("2d");
-}
+    <script>
+      var letters = ['A', 'B', 'C', 'C2', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'S2', 'T', 'U', 'V', 'Z', 'Z2'];
+      var i = 0;
+      var success = 0;
 
-newCanvas();
-</script>
+      function next_letter(cond) {
+        clearTimeout(timer2);
+        if (cond) {
+          success++;
+          document.getElementById('assoc-word').innerHTML = awords[i - 1];
+          timer2 = setTimeout(function () { next_letter_d() }, 5000);
+        }
+        else {
+          next_letter_d();
+        }
+      }
 
-<script>
-  //var letter_a;
-  var letter_curr;
-</script>
-
-<script type="text/javascript" src="js/colouring.js"></script>
-<script type="text/javascript" src="js/shape_a.js"></script>
-
-<script>
-  letter1();
-  //letter2();
-  letter_curr = letter_a;
-  var letters = ['B', 'C', 'D', 'E'];
-  var i = 0;
-
-  function next_letter() {
-    //console.log(i);
-    var content = document.getElementById('content');
-    content.style.backgroundImage="url('./img/letters/" + letters[i] + ".png')";
-    newCanvas();
-    limit_point = -1;
-    // point of no return
-
-    prev_point = -1;
-    // prevous point
-
-    presses = -1;
-    // number of clicks
-
-    penalty = -1;
-    // penalty moves
-
-    reward = -1;
-    // reward points
-
-    failure = false;
-    // letter is successfully drawn
-
-    init();
-    a_shape = new Array();
-    a_r_shape = new Array();
-    if (i == 0) {
-      letter2();
+function next_letter_d() {
+  if (i >= letters.length) {
+    if (success >= 25) {
+      document.getElementById("content").style.background="#333";
+      document.getElementById("content").style.opacity = "0.9";
+      fireworks();
     }
-    else if (i == 1) {
-      letter3();
-    }
-    else if (i == 2) {
-      letter4();
-    }
-    else if (i == 3) {
-      letter5();
-    }
-    letter_curr = letter_arr[i];
-    i++;
-    return false;
+    return;
+  }
+  document.getElementById('assoc-word').innerHTML = '';
+  content.style.backgroundImage="url('./img/letters/" + letters[i] + ".png')";
+  document.getElementById('aimg').src = './img/pics/' + aimgs[i] + '.png';
+
+  // preload next letter image
+  if (i*1 + 1 < letters.length) {
+    document.getElementById('finger').src = './img/letters/' + letters[i*1 + 1] + '.png';
+    document.getElementById('paimg').src = './img/pics/' + aimgs[i*1 + 1] + '.png';
   }
 
-</script>
+  allow_draw = false;
+  clearTimeout(timer);
+  clearInterval(interval);
+  replayShape(shapes[letters[i]]);
+  // show how to draw letter.
+  i++;
+  return false;
+}
+
+function repeat_letter() {
+  allow_draw = false;
+  document.getElementById('assoc-word').innerHTML = '';
+  clearTimeout(timer2);
+  clearTimeout(timer);
+  clearInterval(interval);
+  replayShape(shapes[letters[i - 1]]);
+  // show how to draw letter.
+  return false;
+}
+    </script>
+    <script src="./js/css-fireworks.js"></script>
   </body>
 </html>
